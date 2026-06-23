@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+:root {
+  --brand-green: #5d5c31;
+}

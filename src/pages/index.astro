@@ -1,28 +1,46 @@
 ---
-import '../styles/global.css';
-import Layout from '../layouts/Layout.astro';
-import Badge from '../components/badge.astro';
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
+import LinkedIn from "../icons/LinkedIn.astro";
+import SocialPill from "../icons/SocialPill.astro";
+import GitHub from "../icons/Github.astro";
 ---
-
 
 <Layout>
 	<main>
 		<section class="w-full mx-auto lg:w-[740px] py-44">
-		<h1 class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10">
-			Hey, Soy Angel <a  
-			href="https://www.linkedin.com/in/angel-david-escobar-iba%C3%B1ez-77045b277/"
-			target="_blank"
-			rel="noopener"
-			class="flex justify-center items-center"><Badge>Disponible para trabajar</Badge></a>
-		</h1>
-		<h2>
-		+1 año de experiencia en desarrollo web, especializado en frontend y con conocimientos en backend y diseño UI/UX.
-		He trabajado en proyectos de diversa índole, desde sitios web corporativos hasta aplicaciones web interactivas, 
-		utilizando tecnologías como React, Vue y Node.js. Mi enfoque se centra en crear experiencias de usuario atractivas
-		 y funcionales, siempre buscando la innovación y la mejora continua en cada proyecto.
-		</h2>
+			<h1
+				class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10"
+			>
+				Hola, Soy Ángel <a
+					href="https://www.linkedin.com/in/angel-david-escobar-iba%C3%B1ez-77045b277/"
+					target="_blank"
+					rel="noopener"
+					class="flex justify-center items-center"
+					><Badge>Disponible para trabajar</Badge></a
+				>
+			</h1>
+			<h2 class="text-xl text-wrap">
+				+1 año de experiencia en desarrollo web, especializado en
+				frontend y con conocimientos en backend y diseño UI/UX.
+				utilizando tecnologías como <span class="text-[#a3d9a5]"
+					>React</span
+				>, <span class="text-[#a3d9a5]">Next.js</span>, <span
+					class="text-[#a3d9a5]">Astro</span
+				> y <span class="text-[#a3d9a5]">Node.js</span>.
+			</h2>
 
-		<ul></ul>
+			<nav class="flex flex-row gap-x-2 mt-10">
+				<SocialPill href="https://www.linkedin.com/in/angel-david-escobar-iba%C3%B1ez-77045b277/" >
+					<LinkedIn class="w-6 h-6" />
+					LinkedIn
+				</SocialPill>
+				<SocialPill href="https://github.com/AngelDavidEscobar">
+					<GitHub class="w-6 h-6" />
+					Github
+				</SocialPill>	
+			</nav>
 		</section>
 	</main>
 </Layout>
