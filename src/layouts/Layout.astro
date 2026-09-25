@@ -2,22 +2,31 @@
 import "@fontsource-variable/onest/wght.css";
 import Header from "../components/Header.astro";
 import '../styles/global.css';
+import Footer from "../components/Footer.astro";
+
+const { 
+	title, 
+	description
+
+ } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Portfolio</title>
+		<title>{title}</title>
 	</head>
 	<body>
 		<div class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(194,58,68,0.55),rgba(255,255,255,0))]"></div>
 		<Header />
 		<slot />
+		<Footer />
 	</body>
 </html>
 
@@ -30,6 +39,7 @@ import '../styles/global.css';
 		body {
 			font-family: "Onest Variable", sans-serif;
 		}
+		scroll-behavior: smooth;
 	}
 
 	html,
@@ -37,7 +47,14 @@ import '../styles/global.css';
 		
 		display: flex;
 		flex-direction: column;
+		
 	
 		height: 100vh;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
 	}
 </style>

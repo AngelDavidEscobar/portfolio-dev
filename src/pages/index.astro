@@ -5,11 +5,20 @@ import Badge from "../components/Badge.astro";
 import LinkedIn from "../icons/LinkedIn.astro";
 import SocialPill from "../icons/SocialPill.astro";
 import GitHub from "../icons/Github.astro";
+import Mail from "../icons/Mail.astro";
+import Experience from "../components/Experience.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import Briefcase from "../icons/Briefcase.astro";
+import CodeIcon from "../icons/Code.astro";
+import Projects from "../components/Projects.astro";
 ---
 
-<Layout>
+<Layout 
+title="Portfolio de Ángel David Escobar Ibañez - Fullstack Developer"
+description="Soy Ángel David Escobar Ibañez, un desarrollador web con más de 2 años de experiencia en desarrollo Fullstack. Utilizo tecnologías como React, Next.js, Astro y Node.js para crear aplicaciones web modernas y eficientes.">
+
 	<main>
-		<section class="w-full mx-auto lg:w-[740px] py-44">
+		<SectionContainer  class="py-44 pb-24">
 			<h1
 				class="text-white text-5xl font-bold flex flex-row gap-x-4 pb-10"
 			>
@@ -33,14 +42,39 @@ import GitHub from "../icons/Github.astro";
 
 			<nav class="flex flex-row gap-x-2 mt-10">
 				<SocialPill href="https://www.linkedin.com/in/angel-david-escobar-iba%C3%B1ez-77045b277/" >
-					<LinkedIn class="w-6 h-6" />
+					<LinkedIn class="size-6" />
 					LinkedIn
 				</SocialPill>
 				<SocialPill href="https://github.com/AngelDavidEscobar">
-					<GitHub class="w-6 h-6" />
+					<GitHub class="size-6" />
 					Github
-				</SocialPill>	
+				</SocialPill>
+				<SocialPill href="mailto:angelescobar512@gmail.com">
+					<Mail class="size-6" />
+					angelescobar512@gmail.com
+				</SocialPill>
+				
 			</nav>
-		</section>
+		</SectionContainer>
+
+		<SectionContainer id ="experiencia" >
+			<h2 class="text-3xl text-white font-bold pb-10 flex gap-x-3 items-center">
+				<Briefcase class="size-7 me-2" />
+				Experiencia
+			</h2>
+			<ul class="relative border-l border-neutral-secondary-medium">
+				<Experience />
+			</ul>
+		</SectionContainer>
+
+		<SectionContainer id ="proyectos" >
+			<h2 class="text-3xl text-white font-bold pb-10 flex gap-x-3 items-center">
+				<CodeIcon class="size-7 me-2" />
+				Proyectos
+			</h2>
+			<ul class="relative border-l border-neutral-secondary-medium">
+				<Projects />
+			</ul>
+		</SectionContainer>
 	</main>
 </Layout>

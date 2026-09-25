@@ -2,20 +2,71 @@
 import foto from "../assets/foto.jpg";
 ---
 
-<header class="flex justify-between items-center py-5 w-[1120px] mx-auto">
+<header class="relative flex justify-between items-center py-4 sm:py-5 px-4 sm:px-6 xl:px-0 w-full xl:w-[1120px] mx-auto text-white">
     <img
+        class="size-10 sm:size-12 rounded-full"
+        src={foto.src}
+        alt="angel photo"
+    />
 
-  class="w-12 h-12 rounded-full"
-  src={foto.src}
-  alt="angel photo"
-/>
-
-    <nav class="flex flex-row gap-x-10 opacity-80">
-        <a href="/home">Home</a>
-        <a href="/about">About</a>
-        <a href="/projects">Projects</a>
-        <a href="/contact">Contact</a>
+    <nav class="hidden md:flex flex-row gap-x-6 lg:gap-x-10 opacity-80">
+        <a href="#home" class="hover:text-[#a3d9a5] transition-colors">Inicio</a>
+        <a href="#about" class="hover:text-[#a3d9a5] transition-colors">Sobre mí</a>
+        <a href="#experiencia" class="hover:text-[#a3d9a5] transition-colors">Experiencia</a>
+        <a href="#proyectos" class="hover:text-[#a3d9a5] transition-colors">Proyectos</a>
+        <a href="#contact" class="hover:text-[#a3d9a5] transition-colors">Contacto</a>
     </nav>
-        
 
+    <button
+        id="menu-toggle"
+        class="md:hidden relative z-50 flex flex-col justify-center items-center gap-1.5 size-10"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+    >
+        <span class="block h-0.5 w-6 bg-white transition-all duration-300"></span>
+        <span class="block h-0.5 w-6 bg-white transition-all duration-300"></span>
+        <span class="block h-0.5 w-6 bg-white transition-all duration-300"></span>
+    </button>
+
+    <nav
+        id="mobile-menu"
+        class="md:hidden flex flex-col items-center gap-y-2 absolute top-full left-0 w-full bg-neutral-950 border-t border-white/10 px-4 py-8 shadow-lg z-40 opacity-0 invisible -translate-y-4 transition-all duration-300"
+    >
+        <a href="#home" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Inicio</a>
+        <a href="#about" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Sobre mí</a>
+        <a href="#experiencia" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Experiencia</a>
+        <a href="#projects" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Proyectos</a>
+        <a href="#contact" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Contacto</a>
+    </nav>
 </header>
+
+<script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const lines = toggle?.querySelectorAll("span");
+    let isOpen = false;
+
+    function setMenu(open: boolean) {
+        isOpen = open;
+        toggle?.setAttribute("aria-expanded", String(open));
+
+        menu?.classList.toggle("opacity-0", !open);
+        menu?.classList.toggle("invisible", !open);
+        menu?.classList.toggle("-translate-y-4", !open);
+        menu?.classList.toggle("opacity-100", open);
+        menu?.classList.toggle("visible", open);
+        menu?.classList.toggle("translate-y-0", open);
+
+        lines?.[0]?.classList.toggle("translate-y-2", open);
+        lines?.[0]?.classList.toggle("rotate-45", open);
+        lines?.[1]?.classList.toggle("opacity-0", open);
+        lines?.[2]?.classList.toggle("-translate-y-2", open);
+        lines?.[2]?.classList.toggle("-rotate-45", open);
+    }
+
+    toggle?.addEventListener("click", () => setMenu(!isOpen));
+
+    menu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => setMenu(false));
+    });
+</script>

@@ -1,0 +1,31 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+const EXPERIENCE = [
+    {
+    date: "Septiembre 2026 - Actualidad",
+    title: "Bia Energy - Desarrollador Full-Stack",
+    description:
+      "Actualmente trabajo en Bia Energy, donde me encargo del desarrollo de aplicaciones web utilizando tecnologías como React, Next.js, y Node.js. Mi labor incluye la implementación de nuevas funcionalidades, optimización del rendimiento y mantenimiento del código existente.",
+    
+  },
+  {
+    date: "Noviembre 2024 - Septiembre 2025",
+    title: "Zentria - Desarrollador Full-Stack",
+    description:
+      "Trabajé sobre el desarrollo de aplicaciones web utilizando tecnologías como Next.js, PostgreSQL, MongoDB y Node.js. Me encargo de la implementación de nuevas funcionalidades, despliegue, optimización del rendimiento y mantenimiento del código existente.",
+    
+  },
+   
+];
+---
+<ol class="relative border-s border-default"> 
+    {
+        EXPERIENCE.map((item) => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...item} />
+            </li>       
+        ))
+    }                 
+    
+</ol>
+
