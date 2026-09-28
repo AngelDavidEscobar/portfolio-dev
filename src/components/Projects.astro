@@ -1,68 +1,37 @@
 ---
-const PROJECTS = [
-    {
-        title: "Bot Areas Comunes",
-        description:
-            "Desarrollé un bot para reserva de áreas comunes utilizando Next.js, Tailwind CSS y TypeScript guardando datos en Turso.",
-        link: "https://chatbot-zonas-residenciales-x7ud.vercel.app/",
-        githubLink: "https://github.com/AngelDavidEscobar/chatbot-zonas-residenciales",
-        image: "/projects/AreasComunes.webp",
-        tags: ["Next.js", "Tailwind CSS", "TypeScript", "Turso"],
-    },
-     {
-        title: "Bot Areas Comunes",
-        description:
-            "Desarrollé un bot para reserva de áreas comunes utilizando Next.js, Tailwind CSS y TypeScript guardando datos en Turso.",
-        link: "https://chatbot-zonas-residenciales-x7ud.vercel.app/",
-        githubLink: "https://github.com/AngelDavidEscobar/chatbot-zonas-residenciales",
-        image: "/projects/AreasComunes.webp",
-        tags: ["Next.js", "Tailwind CSS", "TypeScript", "Turso"],
-    },
-];
+import { Icon } from "astro-icon/components";
+import { PROJECTS } from "../../src/data/projects";
+import ProjectItem from "../components/ProjectItem.astro";
 ---
 
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-    {PROJECTS.map((project) => (
-        <article class="group flex flex-col rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:border-[#a3d9a5]/40 transition-colors">
-            <a href={project.link} target="_blank" rel="noopener noreferrer" class="block overflow-hidden">
-                <img
-                    src={project.image}
-                    alt={`Screenshot de ${project.title}`}
-                    class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-300"
-                    loading="lazy"
-                />
-            </a>
-            <div class="flex flex-col flex-1 p-5">
-                <h3 class="text-lg font-semibold text-white mb-2">{project.title}</h3>
-                <p class="text-sm text-neutral-secondary-medium mb-4 line-clamp-3">
-                    {project.description}
-                </p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag) => (
-                        <span class="bg-[#a3d9a5]/10 text-[#a3d9a5] px-2 py-1 rounded-full text-xs">
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-                <div class="flex gap-x-4 mt-auto pt-2">
-                    <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-[#a3d9a5] hover:underline text-sm"
-                    >
-                        Ver proyecto
-                    </a>
-                    <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="text-[#a3d9a5] hover:underline text-sm"
-                    >
-                        Código fuente
-                    </a>
-                </div>
-            </div>
-        </article>
-    ))}
-</div>
+<section id="projects" class="scroll-mt-20 py-16">
+    
+
+    <div class="flex flex-col gap-14">
+        {PROJECTS.map((project) => <ProjectItem project={project} />)}
+    </div>
+</section>
+
+<script>
+    const items = document.querySelectorAll<HTMLElement>(".project-item");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!reduceMotion && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.15 }
+        );
+
+        items.forEach((item) => {
+            item.setAttribute("data-reveal", "");
+            observer.observe(item);
+        });
+    }
+</script>

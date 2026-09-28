@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
-:root {
-  --brand-green: #5d5c31;
+
+@theme {
+    --color-accent: #a3d9a5;
+    --color-brand: #c23a44;
 }

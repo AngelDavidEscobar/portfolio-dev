@@ -1,0 +1,16 @@
+---
+import { Icon } from "astro-icon/components";
+import { TECH, type TechKey } from "../../src/data/tech";
+
+interface Props {
+    tech: TechKey;
+}
+
+const { tech } = Astro.props;
+const { label, icon } = TECH[tech];
+---
+
+<li class="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 text-xs font-medium text-accent">
+    <Icon name={icon} class="size-3.5" aria-hidden="true" />
+    <span>{label}</span>
+</li>

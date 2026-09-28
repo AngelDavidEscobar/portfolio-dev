@@ -7,8 +7,7 @@ import Footer from "../components/Footer.astro";
 const { 
 	title, 
 	description
-
- } = Astro.props;
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -22,8 +21,8 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<div class="absolute top-0 z-[-2] h-screen w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(194,58,68,0.55),rgba(255,255,255,0))]"></div>
+	<body class="bg-neutral-950">
+		<div class="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(194,58,68,0.55),rgba(255,255,255,0))]"></div>
 		<Header />
 		<slot />
 		<Footer />
@@ -33,23 +32,12 @@ const {
 <style>
 	:root {
 		color-scheme: light dark;
-	
 	}
 	html {
 		body {
 			font-family: "Onest Variable", sans-serif;
 		}
 		scroll-behavior: smooth;
-	}
-
-	html,
-	body {
-		
-		display: flex;
-		flex-direction: column;
-		
-	
-		height: 100vh;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
