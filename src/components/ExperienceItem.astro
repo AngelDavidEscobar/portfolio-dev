@@ -1,20 +1,50 @@
 ---
-const {title, description, date, link} = Astro.props;
+import { Icon } from "astro-icon/components";
+import type { Experience } from "../types/experience";
+import TechTag from "./TechTag.astro";
+
+interface Props {
+    experience: Experience;
+}
+
+const { company, role, date, description, highlights, tech, link } = Astro.props.experience;
 ---
 
+<span
+    class="absolute -start-[31px] top-1.5 size-3 rounded-full border-2 border-bg bg-accent ring-4 ring-accent/15"
+    aria-hidden="true"
+></span>
 
-
-<div class="absolute w-3 h-3 bg-accent rounded-full mt-1.5 -start-1.5 border border-bg"></div>
-                <time class="font-mono text-sm leading-none text-fg-subtle">{date}</time>
-                <h3 class="text-lg font-semibold text-accent my-2">{title}</h3>
-                <p class="mb-4 text-base text-fg-muted text-pretty leading-relaxed">{description}</p>
-                {
-                    link && (
-                        <a href={link} class="inline-flex items-center text-fg border border-border hover:bg-white/10 transition-colors font-medium leading-5 rounded-lg text-sm px-4 py-2.5">
-                            
-                            Ver más
-                            <svg class="w-4 h-4 ms-1.5 -me-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/></svg>
-                        </a>
-                    )
-                }
-               
+<p class="font-mono text-sm text-fg-subtle">{date}</p>
+<h3 class="mt-2 text-lg font-semibold text-fg">
+    {role} <span class="text-accent">· {company}</span>
+</h3>
+<p class="mt-3 max-w-[65ch] leading-relaxed text-pretty text-fg-muted">{description}</p>
+{
+    highlights && (
+        <ul class="mt-4 flex max-w-[65ch] flex-col gap-2.5">
+            {highlights.map((highlight) => (
+                <li class="flex gap-3 leading-relaxed text-pretty text-fg-muted">
+                    <Icon name="ph:caret-right-bold" class="mt-1.5 size-3.5 shrink-0 text-accent" aria-hidden="true" />
+                    <span>{highlight}</span>
+                </li>
+            ))}
+        </ul>
+    )
+}
+<ul class="mt-4 flex flex-wrap gap-2" aria-label="Tecnologías utilizadas">
+    {tech.map((key) => <TechTag tech={key} />)}
+</ul>
+{
+    link && (
+        <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent transition-opacity hover:opacity-80"
+        >
+            Ver más
+            <Icon name="ph:arrow-up-right" class="size-4" aria-hidden="true" />
+        </a>
+    )
+}

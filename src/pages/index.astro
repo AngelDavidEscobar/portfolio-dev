@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+import foto from "../assets/foto.jpg";
 import Layout from "../layouts/Layout.astro";
 import Badge from "../components/Badge.astro";
 import LinkedIn from "../icons/LinkedIn.astro";
@@ -10,6 +13,7 @@ import SectionContainer from "../components/SectionContainer.astro";
 import Briefcase from "../icons/Briefcase.astro";
 import CodeIcon from "../icons/Code.astro";
 import Projects from "../components/Projects.astro";
+import About from "../components/About.astro";
 ---
 
 <Layout 
@@ -17,46 +21,77 @@ title="Portfolio de Ángel David Escobar Ibañez - Fullstack Developer"
 description="Soy Ángel David Escobar Ibañez, un desarrollador web con casi 2 años de experiencia en desarrollo Fullstack. Utilizo tecnologías como React, Next.js, Astro y Node.js para crear aplicaciones web modernas y eficientes.">
 
 	<main class="flex flex-col gap-y-16 md:gap-y-24">
-		<SectionContainer id="inicio" class="py-44 pb-24">
-			<h1
-				class="text-fg text-5xl font-bold flex flex-row gap-x-4 pb-10"
-			>
-				Hola, Soy Ángel <a
-					href="https://www.linkedin.com/in/angel-david-escobar-iba%C3%B1ez-77045b277/"
-					target="_blank"
-					rel="noopener"
-					class="flex justify-center items-center"
-					><Badge>Disponible para trabajar</Badge></a
-				>
-			</h1>
-			<h2 class="text-xl text-wrap">
-				Casi 2 años de experiencia en desarrollo web, especializado en
-				frontend y con conocimientos en backend y diseño UI/UX.
-				utilizando tecnologías como <span class="text-accent"
-					>React</span
-				>, <span class="text-accent">Next.js</span>, <span
-					class="text-accent">Astro</span
-				> y <span class="text-accent">Node.js</span>.
-			</h2>
+		<SectionContainer id="inicio" class="px-4 pt-16 pb-8 md:pt-28 lg:px-0">
+			<div class="flex flex-col gap-8 sm:flex-row sm:items-center">
+				<Image
+					src={foto}
+					alt="Foto de Ángel David Escobar"
+					width={256}
+					height={256}
+					loading="eager"
+					class="size-24 shrink-0 rounded-full ring-1 ring-border sm:size-32"
+				/>
+				<div>
+					<a
+						href="mailto:angelescobar512@gmail.com"
+						class="inline-flex"
+					>
+						<Badge>
+							<span class="relative flex size-2" aria-hidden="true">
+								<span class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75 motion-reduce:animate-none"></span>
+								<span class="relative inline-flex size-2 rounded-full bg-accent"></span>
+							</span>
+							Disponible para trabajar
+						</Badge>
+					</a>
+					<h1 class="mt-4 text-4xl font-bold tracking-tight text-fg sm:text-5xl">
+						Hola, soy Ángel
+					</h1>
+					<p class="mt-2 font-mono text-accent">Desarrollador Full-Stack</p>
+				</div>
+			</div>
 
-			<nav class="flex flex-row flex-wrap gap-2 mt-10">
-				<SocialPill href="https://www.linkedin.com/in/angel-david-escobar-iba%C3%B1ez-77045b277/" >
-					<LinkedIn class="size-6" />
-					LinkedIn
-				</SocialPill>
-				<SocialPill href="https://github.com/AngelDavidEscobar">
-					<GitHub class="size-6" />
-					Github
-				</SocialPill>
-				<SocialPill href="mailto:angelescobar512@gmail.com">
-					<Mail class="size-6" />
-					angelescobar512@gmail.com
-				</SocialPill>
-				
-			</nav>
+			<p class="mt-8 max-w-[65ch] text-lg leading-relaxed text-pretty sm:text-xl">
+				Casi 2 años de experiencia en desarrollo web, especializado en
+				frontend y con conocimientos en backend y diseño UI/UX. Trabajo con
+				<span class="text-fg">React</span>, <span class="text-fg">Next.js</span>,
+				<span class="text-fg">Astro</span> y <span class="text-fg">Node.js</span>.
+			</p>
+
+			<div class="mt-10 flex flex-wrap items-center gap-3">
+				<a
+					href="#proyectos"
+					class="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-bg transition-opacity hover:opacity-90"
+				>
+					Ver proyectos
+					<Icon name="ph:arrow-down" class="size-4" aria-hidden="true" />
+				</a>
+				<nav aria-label="Redes sociales" class="contents">
+					<SocialPill href="https://www.linkedin.com/in/angel-david-escobar-iba%C3%B1ez-77045b277/">
+						<LinkedIn class="size-5" />
+						LinkedIn
+					</SocialPill>
+					<SocialPill href="https://github.com/AngelDavidEscobar">
+						<GitHub class="size-5" />
+						GitHub
+					</SocialPill>
+					<SocialPill href="mailto:angelescobar512@gmail.com">
+						<Mail class="size-5" />
+						Correo
+					</SocialPill>
+				</nav>
+			</div>
 		</SectionContainer>
 
-		<SectionContainer id ="experiencia" >
+		<SectionContainer id="sobre-mi" class="px-4 lg:px-0">
+			<h2 class="text-3xl text-fg font-bold pb-10 flex gap-x-3 items-center">
+				<Icon name="ph:user" class="size-7 me-2" aria-hidden="true" />
+				Sobre mí
+			</h2>
+			<About />
+		</SectionContainer>
+
+		<SectionContainer id="experiencia" class="px-4 lg:px-0">
 			<h2 class="text-3xl text-fg font-bold pb-10 flex gap-x-3 items-center">
 				<Briefcase class="size-7 me-2" />
 				Experiencia
@@ -64,7 +99,7 @@ description="Soy Ángel David Escobar Ibañez, un desarrollador web con casi 2 a
 			<Experience />
 		</SectionContainer>
 
-		<SectionContainer id="proyectos">
+		<SectionContainer id="proyectos" class="px-4 lg:px-0">
     <h2 class="text-3xl text-fg font-bold pb-10 flex gap-x-3 items-center">
         <CodeIcon class="size-7 me-2" />
         Proyectos

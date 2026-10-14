@@ -1,42 +1,83 @@
 ---
+import { Image } from "astro:assets";
 import foto from "../assets/foto.jpg";
+
+const LINKS = [
+    { href: "#inicio", label: "Inicio" },
+    { href: "#sobre-mi", label: "Sobre mí" },
+    { href: "#experiencia", label: "Experiencia" },
+    { href: "#proyectos", label: "Proyectos" },
+];
 ---
 
-<header class="relative flex justify-between items-center py-4 sm:py-5 px-4 sm:px-6 xl:px-0 w-full xl:w-[1120px] mx-auto text-fg">
-    <img
-        class="size-10 sm:size-12 rounded-full"
-        src={foto.src}
-        alt="Foto de Ángel David Escobar"
-    />
+<header
+    id="site-header"
+    class="sticky top-0 z-50 border-b border-transparent transition-colors duration-300 data-scrolled:border-border data-scrolled:bg-bg/75 data-scrolled:backdrop-blur-md"
+>
+    <div class="relative mx-auto flex w-full items-center justify-between px-4 py-3 text-fg sm:px-6 xl:w-[1120px] xl:px-0">
+        <a href="#inicio" aria-label="Ir al inicio" class="rounded-full">
+            <Image
+                src={foto}
+                alt=""
+                width={96}
+                height={96}
+                class="size-10 rounded-full ring-1 ring-border sm:size-11"
+            />
+        </a>
 
-    <nav class="hidden md:flex flex-row gap-x-6 lg:gap-x-10 opacity-80">
-        <a href="#inicio" class="hover:text-accent transition-colors">Inicio</a>
-        <a href="#experiencia" class="hover:text-accent transition-colors">Experiencia</a>
-        <a href="#proyectos" class="hover:text-accent transition-colors">Proyectos</a>
-    </nav>
+        <nav aria-label="Principal" class="hidden md:block">
+            <ul class="flex items-center gap-x-2">
+                {LINKS.map(({ href, label }) => (
+                    <li>
+                        <a
+                            href={href}
+                            data-nav-link
+                            class="rounded-full px-4 py-2 text-fg-muted transition-colors hover:text-fg aria-[current=true]:bg-white/5 aria-[current=true]:text-accent"
+                        >
+                            {label}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
 
-    <button
-        id="menu-toggle"
-        class="md:hidden relative z-50 flex flex-col justify-center items-center gap-1.5 size-10"
-        aria-label="Abrir menú"
-        aria-expanded="false"
-    >
-        <span class="block h-0.5 w-6 bg-fg transition-all duration-300"></span>
-        <span class="block h-0.5 w-6 bg-fg transition-all duration-300"></span>
-        <span class="block h-0.5 w-6 bg-fg transition-all duration-300"></span>
-    </button>
+        <button
+            id="menu-toggle"
+            type="button"
+            class="relative z-50 flex size-11 flex-col items-center justify-center gap-1.5 md:hidden"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+        >
+            <span class="block h-0.5 w-6 bg-fg transition-transform duration-300 motion-reduce:transition-none"></span>
+            <span class="block h-0.5 w-6 bg-fg transition-opacity duration-300 motion-reduce:transition-none"></span>
+            <span class="block h-0.5 w-6 bg-fg transition-transform duration-300 motion-reduce:transition-none"></span>
+        </button>
 
-    <nav
-        id="mobile-menu"
-        class="md:hidden flex flex-col items-center gap-y-2 absolute top-full left-0 w-full bg-bg border-t border-border px-4 py-8 shadow-lg z-40 opacity-0 invisible -translate-y-4 transition-all duration-300"
-    >
-        <a href="#inicio" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-accent/10 hover:text-accent transition-colors">Inicio</a>
-        <a href="#experiencia" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-accent/10 hover:text-accent transition-colors">Experiencia</a>
-        <a href="#proyectos" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-accent/10 hover:text-accent transition-colors">Proyectos</a>
-    </nav>
+        <nav
+            id="mobile-menu"
+            aria-label="Principal"
+            class="invisible absolute top-full left-0 z-40 w-full -translate-y-4 border-y border-border bg-bg/95 px-4 py-6 opacity-0 shadow-lg backdrop-blur-md transition-all duration-300 motion-reduce:transition-none md:hidden"
+        >
+            <ul class="flex flex-col items-center gap-y-2">
+                {LINKS.map(({ href, label }) => (
+                    <li class="w-full max-w-xs">
+                        <a
+                            href={href}
+                            data-nav-link
+                            class="block rounded-full py-3 text-center text-lg text-fg-muted transition-colors hover:bg-accent/10 hover:text-accent aria-[current=true]:text-accent"
+                        >
+                            {label}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    </div>
 </header>
 
 <script>
+    const header = document.getElementById("site-header");
     const toggle = document.getElementById("menu-toggle");
     const menu = document.getElementById("mobile-menu");
     const lines = toggle?.querySelectorAll("span");
@@ -45,13 +86,11 @@ import foto from "../assets/foto.jpg";
     function setMenu(open: boolean) {
         isOpen = open;
         toggle?.setAttribute("aria-expanded", String(open));
+        toggle?.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
 
         menu?.classList.toggle("opacity-0", !open);
         menu?.classList.toggle("invisible", !open);
         menu?.classList.toggle("-translate-y-4", !open);
-        menu?.classList.toggle("opacity-100", open);
-        menu?.classList.toggle("visible", open);
-        menu?.classList.toggle("translate-y-0", open);
 
         lines?.[0]?.classList.toggle("translate-y-2", open);
         lines?.[0]?.classList.toggle("rotate-45", open);
@@ -65,4 +104,36 @@ import foto from "../assets/foto.jpg";
     menu?.querySelectorAll("a").forEach((link) => {
         link.addEventListener("click", () => setMenu(false));
     });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && isOpen) {
+            setMenu(false);
+            toggle?.focus();
+        }
+    });
+
+    // Fondo del header al hacer scroll
+    const updateScrolled = () => header?.toggleAttribute("data-scrolled", window.scrollY > 8);
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+
+    // Marca el enlace de la sección visible
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]");
+    const sections = [...new Set([...navLinks].map((link) => link.hash))]
+        .map((hash) => document.querySelector<HTMLElement>(hash))
+        .filter((section): section is HTMLElement => section !== null);
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach((link) => {
+                    link.setAttribute("aria-current", String(link.hash === `#${entry.target.id}`));
+                });
+            });
+        },
+        { rootMargin: "-45% 0px -50% 0px" }
+    );
+
+    sections.forEach((section) => observer.observe(section));
 </script>
