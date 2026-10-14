@@ -2,7 +2,7 @@
 import foto from "../assets/foto.jpg";
 ---
 
-<header class="relative flex justify-between items-center py-4 sm:py-5 px-4 sm:px-6 xl:px-0 w-full xl:w-[1120px] mx-auto text-white">
+<header class="relative flex justify-between items-center py-4 sm:py-5 px-4 sm:px-6 xl:px-0 w-full xl:w-[1120px] mx-auto text-fg">
     <img
         class="size-10 sm:size-12 rounded-full"
         src={foto.src}
@@ -10,9 +10,9 @@ import foto from "../assets/foto.jpg";
     />
 
     <nav class="hidden md:flex flex-row gap-x-6 lg:gap-x-10 opacity-80">
-        <a href="#inicio" class="hover:text-[#a3d9a5] transition-colors">Inicio</a>
-        <a href="#experiencia" class="hover:text-[#a3d9a5] transition-colors">Experiencia</a>
-        <a href="#proyectos" class="hover:text-[#a3d9a5] transition-colors">Proyectos</a>
+        <a href="#inicio" class="hover:text-accent transition-colors">Inicio</a>
+        <a href="#experiencia" class="hover:text-accent transition-colors">Experiencia</a>
+        <a href="#proyectos" class="hover:text-accent transition-colors">Proyectos</a>
     </nav>
 
     <button
@@ -21,18 +21,18 @@ import foto from "../assets/foto.jpg";
         aria-label="Abrir menú"
         aria-expanded="false"
     >
-        <span class="block h-0.5 w-6 bg-white transition-all duration-300"></span>
-        <span class="block h-0.5 w-6 bg-white transition-all duration-300"></span>
-        <span class="block h-0.5 w-6 bg-white transition-all duration-300"></span>
+        <span class="block h-0.5 w-6 bg-fg transition-all duration-300"></span>
+        <span class="block h-0.5 w-6 bg-fg transition-all duration-300"></span>
+        <span class="block h-0.5 w-6 bg-fg transition-all duration-300"></span>
     </button>
 
     <nav
         id="mobile-menu"
-        class="md:hidden flex flex-col items-center gap-y-2 absolute top-full left-0 w-full bg-neutral-950 border-t border-white/10 px-4 py-8 shadow-lg z-40 opacity-0 invisible -translate-y-4 transition-all duration-300"
+        class="md:hidden flex flex-col items-center gap-y-2 absolute top-full left-0 w-full bg-bg border-t border-border px-4 py-8 shadow-lg z-40 opacity-0 invisible -translate-y-4 transition-all duration-300"
     >
-        <a href="#inicio" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Inicio</a>
-        <a href="#experiencia" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Experiencia</a>
-        <a href="#proyectos" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-[#a3d9a5]/10 hover:text-[#a3d9a5] transition-colors">Proyectos</a>
+        <a href="#inicio" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-accent/10 hover:text-accent transition-colors">Inicio</a>
+        <a href="#experiencia" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-accent/10 hover:text-accent transition-colors">Experiencia</a>
+        <a href="#proyectos" class="w-full max-w-xs text-center text-lg py-3 rounded-full hover:bg-accent/10 hover:text-accent transition-colors">Proyectos</a>
     </nav>
 </header>
 

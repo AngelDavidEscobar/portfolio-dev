@@ -1,7 +1,52 @@
 @import "tailwindcss";
 
-
+/*
+ * Design system — ver design-system/MASTER.md
+ * Tema oscuro único. Contrastes medidos sobre --color-bg (#0a0a0a).
+ */
 @theme {
-    --color-accent: #a3d9a5;
-    --color-brand: #c23a44;
+    /* Fuentes */
+    --font-sans: "Onest Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+    /* Superficies */
+    --color-bg: #0a0a0a;
+    --color-surface: #141414;
+    --color-border: rgb(255 255 255 / 0.12);
+
+    /* Texto */
+    --color-fg: #fafafa;       /* títulos — 19:1 */
+    --color-fg-muted: #b3b3b3; /* párrafos — 9.4:1 */
+    --color-fg-subtle: #8f8f8f; /* fechas, metadatos — 6.1:1 */
+
+    /* Marca */
+    --color-accent: #a3d9a5;       /* verde menta: enlaces, highlights — 12.3:1 */
+    --color-brand: #c23a44;        /* rojo: solo fondos/glow (3.8:1, no apto para texto) */
+    --color-brand-strong: #8c2b32; /* fondo de badges con texto blanco — 8.4:1 */
+    --color-brand-hover: #6d1f26;
+}
+
+@layer base {
+    html {
+        color-scheme: dark;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-bg font-sans text-fg-muted antialiased;
+    }
+
+    :where(a, button):focus-visible {
+        @apply rounded-sm outline-2 outline-offset-4 outline-accent;
+    }
+
+    button:not(:disabled) {
+        cursor: pointer;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+    }
 }

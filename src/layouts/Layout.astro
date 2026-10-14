@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/onest/wght.css";
+import "@fontsource-variable/jetbrains-mono/wght.css";
 import Header from "../components/Header.astro";
 import '../styles/global.css';
 import Footer from "../components/Footer.astro";
@@ -16,34 +17,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
 		<link rel="icon" href={`${base}/favicon.ico`} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="bg-neutral-950">
-		<div class="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(194,58,68,0.55),rgba(255,255,255,0))]"></div>
+	<body>
+		<div class="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,color-mix(in_oklab,var(--color-brand)_55%,transparent),transparent)]"></div>
 		<Header />
 		<slot />
 		<Footer />
 	</body>
 </html>
 
-<style>
-	:root {
-		color-scheme: light dark;
-	}
-	html {
-		body {
-			font-family: "Onest Variable", sans-serif;
-		}
-		scroll-behavior: smooth;
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		html {
-			scroll-behavior: auto;
-		}
-	}
-</style>
