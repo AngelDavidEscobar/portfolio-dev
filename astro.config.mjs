@@ -7,11 +7,11 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://AngelDavidEscobar.github.io',
+  site: 'https://angeldavidescobar.github.io',
+  base: '/portfolio-dev',
   vite: {
     plugins: [tailwindcss()]
   },
 
   integrations: [icon()]
 });
-
