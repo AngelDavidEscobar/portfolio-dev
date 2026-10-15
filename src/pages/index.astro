@@ -14,11 +14,12 @@ import Briefcase from "../icons/Briefcase.astro";
 import CodeIcon from "../icons/Code.astro";
 import Projects from "../components/Projects.astro";
 import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout 
-title="Portfolio de Ángel David Escobar Ibañez - Fullstack Developer"
-description="Soy Ángel David Escobar Ibañez, un desarrollador web con casi 2 años de experiencia en desarrollo Fullstack. Utilizo tecnologías como React, Next.js, Astro y Node.js para crear aplicaciones web modernas y eficientes.">
+title="Ángel Escobar — Desarrollador Full-Stack en Bogotá"
+description="Desarrollador Full-Stack en Bogotá con casi 2 años de experiencia construyendo productos web de extremo a extremo con React, Next.js, Node.js y AWS.">
 
 	<main class="flex flex-col gap-y-16 md:gap-y-24">
 		<SectionContainer id="inicio" class="px-4 pt-16 pb-8 md:pt-28 lg:px-0">
@@ -106,5 +107,13 @@ description="Soy Ángel David Escobar Ibañez, un desarrollador web con casi 2 a
     </h2>
     <Projects />
 </SectionContainer>
+
+		<SectionContainer id="contacto" class="px-4 lg:px-0">
+			<h2 class="text-3xl text-fg font-bold pb-10 flex gap-x-3 items-center">
+				<Icon name="ph:chat-circle-text" class="size-7 me-2" aria-hidden="true" />
+				Contacto
+			</h2>
+			<Contact />
+		</SectionContainer>
 	</main>
 </Layout>

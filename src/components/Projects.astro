@@ -1,13 +1,10 @@
 ---
-import { PROJECTS } from "../../src/data/projects";
-import ProjectItem from "../components/ProjectItem.astro";
+import { PROJECTS } from "../data/projects";
+import ProjectItem from "./ProjectItem.astro";
 ---
 
-<div class="py-16">
-
-    <div class="flex flex-col gap-14">
-        {PROJECTS.map((project) => <ProjectItem project={project} />)}
-    </div>
+<div class="flex flex-col gap-14">
+    {PROJECTS.map((project) => <ProjectItem project={project} />)}
 </div>
 
 <script>

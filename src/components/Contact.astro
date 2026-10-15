@@ -1,0 +1,86 @@
+---
+import { Icon } from "astro-icon/components";
+import { CONTACT } from "../data/contact";
+---
+
+<div class="relative overflow-hidden rounded-3xl border border-border bg-surface/60 p-8 sm:p-12">
+    <div
+        class="pointer-events-none absolute -top-24 -right-24 size-64 rounded-full bg-brand/25 blur-3xl"
+        aria-hidden="true"
+    ></div>
+
+    <p class="font-mono text-sm text-accent">¿Tienes un proyecto o una vacante?</p>
+    <h3 class="mt-3 max-w-[20ch] text-3xl font-bold tracking-tight text-balance text-fg sm:text-4xl">
+        Hablemos y construyamos algo juntos
+    </h3>
+    <p class="mt-4 max-w-[55ch] leading-relaxed text-pretty">
+        Estoy abierto a nuevas oportunidades como desarrollador Full-Stack. Escríbeme y
+        conversamos sobre cómo puedo aportar a tu equipo.
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a
+            href={`mailto:${CONTACT.email}`}
+            class="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 font-medium text-bg transition-opacity hover:opacity-90"
+        >
+            <Icon name="ph:paper-plane-tilt" class="size-5" aria-hidden="true" />
+            Escríbeme
+        </a>
+        <button
+            type="button"
+            data-copy-email={CONTACT.email}
+            class="inline-flex items-center gap-2 rounded-full border border-border px-5 py-2.5 font-mono text-sm text-fg transition-colors hover:bg-white/10"
+        >
+            <Icon name="ph:copy" class="size-4" aria-hidden="true" data-copy-icon />
+            <Icon name="ph:check" class="hidden size-4 text-accent" aria-hidden="true" data-check-icon />
+            <span>{CONTACT.email}</span>
+        </button>
+        <span class="sr-only" role="status" aria-live="polite" data-copy-status></span>
+    </div>
+
+    <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+        {CONTACT.socials.map(({ label, href, icon }) => (
+            <li>
+                <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 py-1 text-fg-muted transition-colors hover:text-accent"
+                >
+                    <Icon name={icon} class="size-5" aria-hidden="true" />
+                    {label}
+                    <Icon name="ph:arrow-up-right" class="size-3.5" aria-hidden="true" />
+                </a>
+            </li>
+        ))}
+        <li class="inline-flex items-center gap-2 py-1 text-fg-subtle">
+            <Icon name="ph:map-pin" class="size-5" aria-hidden="true" />
+            {CONTACT.location}
+        </li>
+    </ul>
+</div>
+
+<script>
+    document.querySelectorAll<HTMLButtonElement>("[data-copy-email]").forEach((button) => {
+        const status = button.parentElement?.querySelector("[data-copy-status]");
+        const copyIcon = button.querySelector("[data-copy-icon]");
+        const checkIcon = button.querySelector("[data-check-icon]");
+
+        button.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(button.dataset.copyEmail ?? "");
+            } catch {
+                return;
+            }
+            copyIcon?.classList.add("hidden");
+            checkIcon?.classList.remove("hidden");
+            if (status) status.textContent = "Correo copiado al portapapeles";
+
+            setTimeout(() => {
+                copyIcon?.classList.remove("hidden");
+                checkIcon?.classList.add("hidden");
+                if (status) status.textContent = "";
+            }, 2000);
+        });
+    });
+</script>
